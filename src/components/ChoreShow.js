@@ -10,7 +10,8 @@ function ChoreShow({ chore }) {
     deleteChoreById(chore.id);
   };
 
-  const handleEditClick = () => {
+  // move to context fo save data
+  const handleCompleteClick = () => {
     setShowEdit(!showEdit);
   };
 
@@ -26,16 +27,14 @@ function ChoreShow({ chore }) {
   return (
     <div className="chore-show">
       <img alt="chores" src={`https://picsum.photos/seed/${chore.id}/300/200`} />
-      <div>{content}</div>
-      <div className="actions">
-        <button className="edit" onClick={handleEditClick}>
+        <button className="chore-status" onClick={handleCompleteClick}>
+          {chore.status}
+        </button>
+        <div>{content}</div>
+        <button className="chore-edit" onClick={handleDeleteClick}>
           Edit
         </button>
-        <button className="delete" onClick={handleDeleteClick}>
-          Delete
-        </button>
       </div>
-    </div>
   );
 }
 

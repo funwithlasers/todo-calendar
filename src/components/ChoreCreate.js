@@ -11,7 +11,7 @@ function ChoreCreate() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createChore(title);
+    createChore(title, '05121999'); //fake day id
     setTitle('');
   };
 

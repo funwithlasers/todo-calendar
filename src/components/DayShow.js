@@ -4,11 +4,11 @@ import ChoreList from './ChoreList';
 import DaysContext from '../context/days';
 
 function DayShow() {
-  const { fetchChoresByDay } = useContext(DaysContext);
+  // const { fetchChoresByDay } = useContext(DaysContext);
 
-  useEffect(() => {
-    fetchChoresByDay();
-  }, []);
+  // useEffect(() => {
+  //   fetchChoresByDay();
+  // }, []);
 
   return (
     <div className="day-show">

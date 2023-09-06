@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useContext } from 'react';
+import ChoreCreate from './components/ChoreCreate';
+import ChoreList from './components/ChoreList';
+import ChoresContext from './context/chores';
+import DayShow from './components/DayShow';
 
 function App() {
+  const { fetchChores } = useContext(ChoresContext);
+
+  useEffect(() => {
+    fetchChores();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <DayShow />
   );
 }
 

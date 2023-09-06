@@ -1,0 +1,29 @@
+# Get all chores
+GET http://localhost:3001/chores HTTP/1.1
+Content-Type: application/json
+
+###
+
+# Create a chore
+POST http://localhost:3001/chores HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Harry Potter"
+}
+
+###
+
+# Update a chore
+PUT http://localhost:3001/chores/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Dark Tower"
+}
+
+###
+
+# Delete a chore
+DELETE http://localhost:3001/chores/1 HTTP/1.1
+Content-Type: application/json

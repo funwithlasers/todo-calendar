@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import ChoresContext from './context/chores';
-import MonthShow from './components/MonthShow';
+import WeekShow from './components/WeekShow';
 
 function App() {
   const { fetchChores } = useContext(ChoresContext);
@@ -10,7 +10,7 @@ function App() {
   }, []);
 
   return (
-   <MonthShow />
+   <WeekShow />
   );
 }
 

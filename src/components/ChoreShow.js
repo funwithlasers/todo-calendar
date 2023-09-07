@@ -31,8 +31,11 @@ function ChoreShow({ chore }) {
           {chore.status}
         </button>
         <div>{content}</div>
-        <button className="chore-edit" onClick={handleDeleteClick}>
+        <button className="chore-edit" onClick={handleCompleteClick}>
           Edit
+        </button>
+        <button className="chore-delete" onClick={handleDeleteClick}>
+          Delete
         </button>
       </div>
   );

@@ -12,7 +12,7 @@ function Provider({ children }) {
 
   const [activeDay, setActiveDay] = useState(getToday());
 
-  const fetchDaysByMonth = async (date) => {
+  const fetchDaysByWeek = async (date) => {
     const response = await axios.get('http://localhost:3001/days');
     const days = response.data.filter(day => day.getFullYear() === date.getFullYear());
 
@@ -22,7 +22,7 @@ function Provider({ children }) {
   const valueToShare = {
     days,
     activeDay,
-    fetchDaysByMonth
+    fetchDaysByWeek
   };
 
   return (

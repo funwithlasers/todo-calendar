@@ -12,8 +12,8 @@ function MonthShow() {
   return (
     <div className="month-show">
       <h1>MonthName</h1>
-      <DayShow day='05121999'/>
-      <DayShow day='06022000'/>
+      <DayShow date='9/6/2023'/>
+      <DayShow date='9/7/2023'/>
     </div>
   );
 }

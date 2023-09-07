@@ -3,7 +3,7 @@ import ChoreCreate from './ChoreCreate';
 import ChoreList from './ChoreList';
 import ChoresContext from '../context/chores';
 
-function DayShow(props) {
+function DayShow({ date }) {
 
   // useEffect(() => {
   //   fetchChoresByDay(props.day);
@@ -12,8 +12,8 @@ function DayShow(props) {
   return (
     <div className="day-show">
       <h1>DayOfMonthHere</h1>
-      <ChoreList day={props.day}/>
-      <ChoreCreate day={props.day}/>
+      <ChoreList date={date}/>
+      <ChoreCreate date={date}/>
     </div>
   );
 }

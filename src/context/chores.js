@@ -45,11 +45,11 @@ function Provider({ children }) {
     setChores(updatedChores);
   };
 
-  const createChore = async (title, status, day) => {
+  const createChore = async (title, status, date) => {
     const response = await axios.post('http://localhost:3001/chores', {
       title,
       status,
-      day,
+      date,
     });
 
     const updatedChores = [...chores, response.data];

@@ -1,20 +1,14 @@
-import { useEffect, useState } from 'react';
 import ChoreShow from './ChoreShow';
 import useChoresContext from '../hooks/use-chores-context';
 
-function ChoreList({ day }) {
-  const { chores, setChores } = useChoresContext();
-  //const [ dayChores, setDayChores] = useState([]);
+function ChoreList({ date }) {
+  const { chores } = useChoresContext();
 
-  // useEffect(() => {
-  //   fetchChoresByDay('05121999');
-  // }, [chores]);
-
-  const dayChores = (day) => chores.filter(chore => {
-    return chore.day === day;
+  const dayChores = (date) => chores.filter(chore => {
+    return chore.date === date;
   });
 
-  const renderedChores = dayChores(day).map((chore) => {
+  const renderedChores = dayChores(date).map((chore) => {
     return <ChoreShow key={chore.id} chore={chore} />;
   });
 

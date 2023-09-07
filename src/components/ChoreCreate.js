@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useChoresContext from '../hooks/use-chores-context';
 
-function ChoreCreate() {
+function ChoreCreate(props) {
   const [title, setTitle] = useState('');
   const { createChore } = useChoresContext();
 
@@ -11,7 +11,7 @@ function ChoreCreate() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createChore(title, 'incomplete', '05121999'); //fake day id
+    createChore(title, 'incomplete', props.day); //fake day id
     setTitle('');
   };
 

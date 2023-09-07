@@ -1,20 +1,19 @@
 import { useEffect, useContext } from 'react';
 import ChoreCreate from './ChoreCreate';
 import ChoreList from './ChoreList';
-import DaysContext from '../context/days';
+import ChoresContext from '../context/chores';
 
-function DayShow() {
-  // const { fetchChoresByDay } = useContext(DaysContext);
+function DayShow(props) {
 
   // useEffect(() => {
-  //   fetchChoresByDay();
+  //   fetchChoresByDay(props.day);
   // }, []);
 
   return (
     <div className="day-show">
       <h1>DayOfMonthHere</h1>
-      <ChoreList />
-      <ChoreCreate />
+      <ChoreList day={props.day}/>
+      <ChoreCreate day={props.day}/>
     </div>
   );
 }

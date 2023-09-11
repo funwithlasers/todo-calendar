@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import ChoreEdit from './ChoreEdit';
 import useChoresContext from '../hooks/use-chores-context';
-import { BiCircle, BiCheckCircle, BiEdit, BiTrash } from 'react-icons/bi';
-import { IconContext } from 'react-icons';
-
+import IncompleteIcon from './icons/IncompleteIcon'
+import CompleteIcon from './icons/CompeteIcon';
+import EditIcon from './icons/EditIcon';
+import DeleteIcon from './icons/DeleteIcon';
 
 
 function ChoreShow({ chore }) {
@@ -34,20 +35,8 @@ function ChoreShow({ chore }) {
   };
 
   let statusIcon = () => {
-    if (chore.status) return (
-      <IconContext.Provider value={{ color: 'green', className: 'complete-icon' }}>
-        <div>
-          <BiCheckCircle />
-        </div>
-      </IconContext.Provider>);
-
-    return (
-      <IconContext.Provider value={{ color: 'red', className: 'incomplete-icon' }}>
-        <div>
-          <BiCircle />
-        </div>
-      </IconContext.Provider>
-    );
+    if (chore.status) return (<CompleteIcon />);
+    return (<IncompleteIcon />);
   };
 
   return (
@@ -58,10 +47,10 @@ function ChoreShow({ chore }) {
         </button>
         <div>{content}</div>
         <button className='chore-edit' onClick={handleCompleteEditClick}>
-          <BiEdit />
+          <EditIcon />
         </button>
         <button className='chore-delete' onClick={handleDeleteClick}>
-          <BiTrash />
+          <DeleteIcon />
         </button>
       </div>
     </div>

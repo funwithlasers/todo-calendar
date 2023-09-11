@@ -12,7 +12,7 @@ function ChoreList({ date }) {
     return <ChoreShow key={chore.id} chore={chore} />;
   });
 
-  return <div className="chore-list">{renderedChores}</div>;
+  return <div className='chore-list'>{renderedChores}</div>;
 }
 
 export default ChoreList;

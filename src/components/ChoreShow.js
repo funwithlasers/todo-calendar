@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ChoreEdit from './ChoreEdit';
 import useChoresContext from '../hooks/use-chores-context';
 import { BiCircle, BiCheckCircle, BiEdit, BiTrash } from 'react-icons/bi';
-import { IconContext } from "react-icons";
+import { IconContext } from 'react-icons';
 
 
 
@@ -35,14 +35,14 @@ function ChoreShow({ chore }) {
 
   let statusIcon = () => {
     if (chore.status) return (
-      <IconContext.Provider value={{ color: "green", className: "complete-icon" }}>
+      <IconContext.Provider value={{ color: 'green', className: 'complete-icon' }}>
         <div>
           <BiCheckCircle />
         </div>
       </IconContext.Provider>);
 
     return (
-      <IconContext.Provider value={{ color: "red", className: "incomplete-icon" }}>
+      <IconContext.Provider value={{ color: 'red', className: 'incomplete-icon' }}>
         <div>
           <BiCircle />
         </div>
@@ -51,16 +51,16 @@ function ChoreShow({ chore }) {
   };
 
   return (
-    <div className="chore-show-container">
-      <div className="chore-show inline-flex gap-2">
-        <button className="chore-status" onClick={handleUpdateStatusClick}>
+    <div className='chore-show-container'>
+      <div className='chore-show inline-flex gap-2'>
+        <button className='chore-status' onClick={handleUpdateStatusClick}>
           {statusIcon()}
         </button>
         <div>{content}</div>
-        <button className="chore-edit" onClick={handleCompleteEditClick}>
+        <button className='chore-edit' onClick={handleCompleteEditClick}>
           <BiEdit />
         </button>
-        <button className="chore-delete" onClick={handleDeleteClick}>
+        <button className='chore-delete' onClick={handleDeleteClick}>
           <BiTrash />
         </button>
       </div>

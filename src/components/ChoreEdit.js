@@ -17,10 +17,10 @@ function ChoreEdit({ chore, onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="chore-edit">
+    <form onSubmit={handleSubmit} className='chore-edit'>
       <label>Title</label>
-      <input className="input" value={title} onChange={handleChange} />
-      <button className="button is-primary">Save</button>
+      <input className='input' value={title} onChange={handleChange} />
+      <button className='button is-primary'>Save</button>
     </form>
   );
 }

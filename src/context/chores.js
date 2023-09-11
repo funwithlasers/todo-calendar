@@ -15,7 +15,7 @@ function Provider({ children }) {
   // const fetchChoresByDay = async (day) => {
   //   const response = await axios.get('http://localhost:3001/chores');
   //   const dayChores = response.data.filter(chore => chore.day === day);
-  //   console.log("fetchChoresByDay: ", chores);
+        //   console.log('fetchChoresByDay: ', chores);
   //   setChores(dayChores);
   // };
 

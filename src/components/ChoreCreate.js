@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import useChoresContext from '../hooks/use-chores-context';
-import { BiSolidPlusCircle } from 'react-icons/bi'
-import { IconContext } from 'react-icons';
+import CreateIcon from './icons/CreateIcon';
 
 
 function ChoreCreate({ date }) {
@@ -20,11 +19,7 @@ function ChoreCreate({ date }) {
 
   return (
     <div className='chore-create'>
-      <IconContext.Provider value={{ color: 'deepskyblue', className: 'complete-icon' }}>
-        <div>
-          <BiSolidPlusCircle />
-        </div>
-      </IconContext.Provider>
+      <CreateIcon />
       <form onSubmit={handleSubmit}>
         <label>Title</label>
         <input className='input' value={title} onChange={handleChange} />

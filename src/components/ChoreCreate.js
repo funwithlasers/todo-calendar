@@ -11,7 +11,7 @@ function ChoreCreate({ date }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createChore(title, 'incomplete', date);
+    createChore(title, 0, date);
     setTitle('');
   };
 

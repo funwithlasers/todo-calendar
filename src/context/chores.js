@@ -19,9 +19,11 @@ function Provider({ children }) {
   //   setChores(dayChores);
   // };
 
-  const editChoreById = async (id, newTitle) => {
+  const editChoreById = async (id, title, status, date) => {
     const response = await axios.put(`http://localhost:3001/chores/${id}`, {
-      title: newTitle,
+      title,
+      status,
+      date,
     });
 
     const updatedChores = chores.map((chore) => {

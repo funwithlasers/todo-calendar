@@ -21,7 +21,9 @@ function ChoreEdit({ chore, onSubmit }) {
     <form onSubmit={handleSubmit} className='chore-edit'>
       <label>Title</label>
       <input className='input border-solid border-1' value={title} onChange={handleChange} />
-      <SaveIcon onClick={handleSubmit}/>
+      <button className='button'>
+        <SaveIcon />
+      </button>
     </form>
   );
 }

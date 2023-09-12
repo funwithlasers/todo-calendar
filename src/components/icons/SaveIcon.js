@@ -1,8 +1,8 @@
 import { BiSave } from 'react-icons/bi';
 
-function SaveIcon({ onClick }) {
+function SaveIcon() {
   return (
-    <BiSave onClick={onClick}/>
+    <BiSave />
   );
 }
 

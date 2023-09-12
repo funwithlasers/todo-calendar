@@ -32,14 +32,16 @@ function ChoreCreate({ date }) {
         <form onSubmit={handleSubmit}>
           <label>Title</label>
           <input className='input' value={title} onChange={handleChange} />
-          <SaveIcon onClick={handleSubmit}/>
+          <button className="button">
+            <SaveIcon />
+          </button>
         </form>
       );
     }
   };
 
   return (
-    <div className='chore-create' >
+    <div className='chore-create'>
       <CreateIcon onClick={handleModal} />
       {modal()}
     </div>

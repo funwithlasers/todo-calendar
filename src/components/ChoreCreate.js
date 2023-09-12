@@ -42,7 +42,9 @@ function ChoreCreate({ date }) {
 
   return (
     <div className='chore-create'>
-      <CreateIcon onClick={handleModal} />
+      <button className='button' onClick={handleModal}>
+        <CreateIcon />
+      </button>
       {modal()}
     </div>
   );

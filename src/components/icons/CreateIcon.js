@@ -5,7 +5,7 @@ function CreateIcon({ onClick }) {
   return (
     <IconContext.Provider value={{ color: 'deepskyblue', className: 'complete-icon' }}>
       <div>
-        <BiSolidPlusCircle onClick={onClick}/>
+        <BiSolidPlusCircle />
       </div>
     </IconContext.Provider>
   );

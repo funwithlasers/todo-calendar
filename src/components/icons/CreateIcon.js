@@ -3,7 +3,7 @@ import { IconContext } from 'react-icons';
 
 function CreateIcon({ onClick }) {
   return (
-    <IconContext.Provider value={{ color: 'deepskyblue', className: 'complete-icon' }}>
+    <IconContext.Provider value={{ color: 'deepskyblue', className: 'create-icon' }}>
       <div>
         <BiSolidPlusCircle />
       </div>

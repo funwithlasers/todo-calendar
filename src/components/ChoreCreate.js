@@ -21,9 +21,8 @@ function ChoreCreate({ date }) {
   };
 
   const handleModal = () => {
-    console.log('handleModal triggered');
     setIsCreateChore(!isCreateChore);
-  }
+  };
 
   let modal = () => {
 
@@ -32,7 +31,7 @@ function ChoreCreate({ date }) {
         <form onSubmit={handleSubmit}>
           <label>Title</label>
           <input className='input' value={title} onChange={handleChange} />
-          <button className="button">
+          <button className='button'>
             <SaveIcon />
           </button>
         </form>

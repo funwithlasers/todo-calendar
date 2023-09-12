@@ -3,7 +3,7 @@ import { IconContext } from 'react-icons';
 
 function IncompleteIcon() {
   return (
-    <IconContext.Provider value={{ color: 'red', className: 'complete-icon' }} >
+    <IconContext.Provider value={{ color: 'red', className: 'incomplete-icon' }} >
       <div>
         <BiCircle />
       </div>

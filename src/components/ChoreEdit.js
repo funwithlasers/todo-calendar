@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import useChoresContext from '../hooks/use-chores-context';
+import SaveIcon from './icons/SaveIcon';
 
 function ChoreEdit({ chore, onSubmit }) {
   const [title, setTitle] = useState(chore.title);
@@ -19,8 +20,8 @@ function ChoreEdit({ chore, onSubmit }) {
   return (
     <form onSubmit={handleSubmit} className='chore-edit'>
       <label>Title</label>
-      <input className='input' value={title} onChange={handleChange} />
-      <button className='button is-primary'>Save</button>
+      <input className='input border-solid border-1' value={title} onChange={handleChange} />
+      <SaveIcon onClick={handleSubmit}/>
     </form>
   );
 }

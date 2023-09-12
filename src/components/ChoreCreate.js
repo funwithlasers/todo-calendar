@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useChoresContext from '../hooks/use-chores-context';
 import CreateIcon from './icons/CreateIcon';
+import SaveIcon from './icons/SaveIcon';
 
 
 function ChoreCreate({ date }) {
@@ -31,7 +32,7 @@ function ChoreCreate({ date }) {
         <form onSubmit={handleSubmit}>
           <label>Title</label>
           <input className='input' value={title} onChange={handleChange} />
-          <button className='button'>Create!</button>
+          <SaveIcon onClick={handleSubmit}/>
         </form>
       );
     }

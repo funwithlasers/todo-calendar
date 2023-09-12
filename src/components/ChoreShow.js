@@ -35,17 +35,16 @@ function ChoreShow({ chore }) {
   };
 
   let statusIcon = () => {
-    if (chore.status) return (<CompleteIcon />);
-    return (<IncompleteIcon />);
+    return chore.status ? (<CompleteIcon />) : (<IncompleteIcon />);
   };
 
   return (
     <div className='chore-show-container'>
-      <div className='chore-show inline-flex gap-2'>
-        <button className='chore-status' onClick={handleUpdateStatusClick}>
+      <div className='chore-show flex flex-row w-full'>
+        <button className='chore-status pr-1' onClick={handleUpdateStatusClick}>
           {statusIcon()}
         </button>
-        <div>{content}</div>
+        <div className='h-7 flex-1 min-w-fit pr-2'>{content}</div>
         <button className='chore-edit' onClick={handleCompleteEditClick}>
           <EditIcon />
         </button>

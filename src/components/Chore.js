@@ -7,8 +7,9 @@ import EditIcon from './icons/EditIcon';
 import DeleteIcon from './icons/DeleteIcon';
 
 
-function ChoreShow({ chore }) {
+function Chore({ chore }) {
   const [showEdit, setShowEdit] = useState(false);
+  const [title, setTitle] = useState(false);
   const { deleteChoreById, editChoreById } = useChoresContext();
 
   const handleDeleteClick = () => {
@@ -24,12 +25,16 @@ function ChoreShow({ chore }) {
     setShowEdit(false);
   };
 
+  const handleChange = (event) => { 
+    setTitle(event.target.value);
+  }
+
   let content = <h3>{chore.title}</h3>;
   if (showEdit) {
     content = <ChoreEdit onSubmit={handleSubmit} chore={chore} />;
   }
 
-  const handleUpdateStatusClick = () => {
+  const handleUpdateStatus = () => {
     let status = !chore.status;
     editChoreById(chore.id, chore.title, status, chore.date)
   };
@@ -41,7 +46,7 @@ function ChoreShow({ chore }) {
   return (
     <div className='chore-show-container'>
       <div className='chore-show flex flex-row w-full'>
-        <button className='chore-status pr-1' onClick={handleUpdateStatusClick}>
+        <button className='chore-status pr-1' onClick={handleUpdateStatus}>
           {statusIcon()}
         </button>
         <div className='h-7 flex-1 min-w-fit pr-2'>{content}</div>
@@ -56,4 +61,4 @@ function ChoreShow({ chore }) {
   );
 }
 
-export default ChoreShow;
+export default Chore;

@@ -19,11 +19,12 @@ function ChoreEdit({ chore, onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit} className='chore-edit'>
-      <label>Title</label>
-      <input className='input border-solid border-1' value={title} onChange={handleChange} />
-      <button className='button'>
-        <SaveIcon />
-      </button>
+      <div className='flex'>
+        <input className='input border-solid border-1' value={title} onChange={handleChange} />
+        <button className='button pl-1'>
+          <SaveIcon />
+        </button>
+      </div>
     </form>
   );
 }

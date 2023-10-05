@@ -4,7 +4,7 @@ function WeekPage() {
 
   return (
     <div className='week-page'>
-      <h1 className='text-3xl font-bold underline'>WEEKNAME HERE</h1>
+      <h1 className='relative text-3xl font-bold underline'>WEEKNAME HERE</h1>
       <Week />
     </div>
   );

@@ -23,25 +23,23 @@ function Week() {
       date: '1/6/2023',
     },
     {
-      date: '1/6/2023',
+      date: '1/7/2023',
     },
   ]
 
   const [days, setDays] = useState(testDays);
 
   const renderedDays = days.map(day => {
-    return(
-    <div className='flex-1 p-2'>
-      <Day date={day.date} />
-    </div>
+    return (
+      <div key={day.date} className='flex-1 p-2'>
+        <Day date={day.date} />
+      </div>
     )
   });
 
   return (
-    <div className='week-container'>
-      <div className='flex items-center justify-center'>
-        {renderedDays}
-      </div>
+    <div className='grid grid-cols-7 justify-center'>
+      {renderedDays}
     </div>
   );
 }

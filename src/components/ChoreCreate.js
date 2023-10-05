@@ -24,9 +24,7 @@ function ChoreCreate({ date }) {
     setIsCreateChore(!isCreateChore);
   };
 
-  let modal = () => {
-
-    if (isCreateChore) {
+  let addChore = () => {
       return (
         <form onSubmit={handleSubmit}>
           <label>Title</label>
@@ -36,15 +34,14 @@ function ChoreCreate({ date }) {
           </button>
         </form>
       );
-    }
   };
 
   return (
     <div className='chore-create'>
-      <button className='button' onClick={handleModal}>
+      <button className='button absolute bottom-1 right-1' onClick={handleModal}>
         <CreateIcon />
       </button>
-      {modal()}
+      {isCreateChore && addChore()}
     </div>
   );
 }

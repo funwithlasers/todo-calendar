@@ -12,13 +12,6 @@ function Provider({ children }) {
     setChores(response.data);
   };
 
-  // const fetchChoresByDay = async (day) => {
-  //   const response = await axios.get('http://localhost:3001/chores');
-  //   const dayChores = response.data.filter(chore => chore.day === day);
-        //   console.log('fetchChoresByDay: ', chores);
-  //   setChores(dayChores);
-  // };
-
   const editChoreById = async (id, title, status, date) => {
     const response = await axios.put(`http://localhost:3001/chores/${id}`, {
       title,
@@ -26,7 +19,7 @@ function Provider({ children }) {
       date,
     });
 
-    const updatedChores = chores.map((chore) => {
+    const updatedChores = chores.map(chore => {
       if (chore.id === id) {
         return { ...chore, ...response.data };
       }
@@ -40,7 +33,7 @@ function Provider({ children }) {
   const deleteChoreById = async (id) => {
     await axios.delete(`http://localhost:3001/chores/${id}`);
 
-    const updatedChores = chores.filter((chore) => {
+    const updatedChores = chores.filter(chore => {
       return chore.id !== id;
     });
 
@@ -64,7 +57,6 @@ function Provider({ children }) {
     editChoreById,
     createChore,
     fetchChores,
-   // fetchChoresByDay,
   };
 
   return (

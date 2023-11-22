@@ -1,15 +1,15 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 
-const DayContext = createContext();
+const DaysContext = createContext();
 
-function Provider({ children }) {
+function DaysProvider({ children }) {
   const [days, setDays] = useState([]);
   const [activeDay, setActiveDay] = useState(new Date());
 
   const getWeekDays = (date = activeDay) => {
     var sunday = getSunday(date);
     const days = [...Array(7)].map((_, i) => new Date(date.setDate(sunday.getDate()+ i)));
-    
+
     setDays(days);
   }
 
@@ -21,17 +21,19 @@ function Provider({ children }) {
     return new Date(date.setDate(diff));
   }
 
-  const _daysContext = {
+  const daysContext = {
     days,
-    activeDay
+    activeDay,
+    setActiveDay,
+    getWeekDays
   };
 
   return (
-    <DayContext.Provider value={_daysContext}>
+    <DaysContext.Provider value={daysContext}>
       {children}
-    </DayContext.Provider>
+    </DaysContext.Provider>
   );
 }
 
-export { Provider };
-export default DayContext;
+export { DaysProvider };
+export default DaysContext;

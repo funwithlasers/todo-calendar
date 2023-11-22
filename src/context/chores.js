@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const ChoresContext = createContext();
 
-function Provider({ children }) {
+function ChoresProvider({ children }) {
   const [chores, setChores] = useState([]);
 
   const fetchChores = async () => {
@@ -51,7 +51,7 @@ function Provider({ children }) {
     setChores(updatedChores);
   };
 
-  const valueToShare = {
+  const choresContext = {
     chores,
     deleteChoreById,
     editChoreById,
@@ -60,11 +60,11 @@ function Provider({ children }) {
   };
 
   return (
-    <ChoresContext.Provider value={valueToShare}>
+    <ChoresContext.Provider value={choresContext}>
       {children}
     </ChoresContext.Provider>
   );
 }
 
-export { Provider };
+export { ChoresProvider };
 export default ChoresContext;

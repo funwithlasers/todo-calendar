@@ -1,38 +1,19 @@
-import { useState } from 'react';
+import { useContext, useEffect } from 'react';
 import Day from './Day';
+import DayContext from '../context/days';
 
 function Week() {
 
-  const testDays = [
-    {
-      date: '1/1/2023',
-    },
-    {
-      date: '1/2/2023',
-    },
-    {
-      date: '1/3/2023',
-    },
-    {
-      date: '1/4/2023',
-    },
-    {
-      date: '1/5/2023',
-    },
-    {
-      date: '1/6/2023',
-    },
-    {
-      date: '1/7/2023',
-    },
-  ]
+  const { days, activeDay, getWeekDays } = useContext(DayContext);
 
-  const [days, setDays] = useState(testDays);
+  useEffect(() => {
+    getWeekDays(activeDay);
+  }, []);
 
   const renderedDays = days.map(day => {
     return (
-      <div key={day.date} className='flex-1 p-2'>
-        <Day date={day.date} />
+      <div key={day.toLocaleDateString("en-US")} className='flex-1 p-2'>
+        <Day date={day.toLocaleDateString("en-US")} />
       </div>
     )
   });

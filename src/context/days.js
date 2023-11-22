@@ -8,7 +8,7 @@ function DaysProvider({ children }) {
 
   const getWeekDays = (date = activeDay) => {
     var sunday = getSunday(date);
-    const days = [...Array(7)].map((_, i) => new Date(date.setDate(sunday.getDate()+ i)));
+    const days = [...Array(7)].map((_, i) => new Date(date.setDate(sunday.getDate() + i)));
 
     setDays(days);
   }

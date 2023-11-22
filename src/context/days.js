@@ -1,36 +1,37 @@
 import { createContext, useEffect, useState } from 'react';
-import axios from 'axios';
 
-const DaysContext = createContext();
+const DayContext = createContext();
 
 function Provider({ children }) {
   const [days, setDays] = useState([]);
+  const [activeDay, setActiveDay] = useState(new Date());
 
-  const getToday = () => {
-    return new Date().toLocaleDateString();
-  };
-
-  const [activeDay, setActiveDay] = useState(getToday());
-
-  const fetchDaysByWeek = async (date) => {
-    const response = await axios.get('http://localhost:3001/days');
-    const days = response.data.filter(day => day.getFullYear() === date.getFullYear());
-
+  const getWeekDays = (date = activeDay) => {
+    var sunday = getSunday(date);
+    const days = [...Array(7)].map((_, i) => new Date(date.setDate(sunday.getDate()+ i)));
+    
     setDays(days);
-  };
+  }
 
-  const valueToShare = {
+  function getSunday(date = activeDay) {
+    date = new Date(date);
+    var day = date.getDay(),
+      diff = date.getDate() - day;
+
+    return new Date(date.setDate(diff));
+  }
+
+  const _daysContext = {
     days,
-    activeDay,
-    fetchDaysByWeek
+    activeDay
   };
 
   return (
-    <DaysContext.Provider value={valueToShare}>
+    <DayContext.Provider value={_daysContext}>
       {children}
-    </DaysContext.Provider>
+    </DayContext.Provider>
   );
 }
 
 export { Provider };
-export default DaysContext;
+export default DayContext;

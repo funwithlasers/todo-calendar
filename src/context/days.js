@@ -1,10 +1,10 @@
 import { createContext, useState } from 'react';
-import { addDays, startOfWeek, subDays } from "date-fns";
+import { addDays, startOfWeek, subDays, startOfDay } from 'date-fns';
 
 const DaysContext = createContext();
 
 function DaysProvider({ children }) {
-  const [activeDay, setActiveDay] = useState(new Date())
+  const [activeDay, setActiveDay] = useState(startOfDay(new Date()));
 
   function getWeekDays(date = activeDay) {
     var weekdays = [...Array(7)];

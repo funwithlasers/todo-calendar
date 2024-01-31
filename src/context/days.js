@@ -27,7 +27,7 @@ function DaysProvider({ children }) {
     setSelectedDay(next);
   }
 
-  function decrementselectedDay() {
+  function decrementSelectedDay() {
     var prev = subDays(selectedDay, 1);
     setDays(getWeekDays(prev));
     setSelectedDay(prev);
@@ -52,7 +52,7 @@ function DaysProvider({ children }) {
     setSelectedDay,
     getWeekDays,
     incrementSelectedDay,
-    decrementselectedDay,
+    decrementSelectedDay,
     incrementWeek,
     decrementWeek
   };

@@ -4,7 +4,7 @@ import DayContext from '../context/days';
 
 function Week() {
 
-  const { days, incrementActiveDay, decrementActiveDay, getWeekDays } = useContext(DayContext);
+  const { days, incrementselectedDay, decrementselectedDay, getWeekDays } = useContext(DayContext);
 
   getWeekDays();
 
@@ -19,8 +19,8 @@ function Week() {
   return (
     <>
       <div className='flex justify-around'>
-        <button className='rounded-lg border-solid border-2 border-gray-800' onClick={decrementActiveDay}>Previous Day</button>
-        <button className='rounded-lg border-solid border-2 border-gray-800' onClick={incrementActiveDay}>Next Day</button>
+        <button className='rounded-lg border-solid border-2 border-gray-800' onClick={decrementselectedDay}>Previous Day</button>
+        <button className='rounded-lg border-solid border-2 border-gray-800' onClick={incrementselectedDay}>Next Day</button>
       </div>
       <div className='grid grid-cols-7 justify-center'>
         {renderedDays}

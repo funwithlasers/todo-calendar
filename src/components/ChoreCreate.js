@@ -13,7 +13,7 @@ import "react-datepicker/dist/react-datepicker.css"
 function ChoreCreate({ date }) {
   const [title, setTitle] = useState('');
   const { createChore } = useChoresContext();
-  const { activeDay } = useDaysContext();
+  const { selectedDay } = useDaysContext();
   const [showModal, setShowModal] = useState(false);
   const [choreDate, setChoreDate] = useState(toDate(date));
 
@@ -31,7 +31,7 @@ function ChoreCreate({ date }) {
 
 
   const handleCreateChoreClick = () => {
-    setChoreDate(activeDay);
+    setChoreDate(selectedDay);
     setShowModal(true);
   };
 

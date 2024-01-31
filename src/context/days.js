@@ -4,9 +4,10 @@ import { addDays, startOfWeek, subDays, startOfDay } from 'date-fns';
 const DaysContext = createContext();
 
 function DaysProvider({ children }) {
-  const [selectedDay, setselectedDay] = useState(startOfDay(new Date()));
+  const [selectedDay, setSelectedDay] = useState(startOfDay(new Date()));
+  var dayInScope = selectedDay;
 
-  function getWeekDays(date = selectedDay) {
+  function getWeekDays(date) {
     var weekdays = [...Array(7)];
     var curr = startOfWeek(date);
 
@@ -20,27 +21,27 @@ function DaysProvider({ children }) {
 
   const [days, setDays] = useState(getWeekDays());
 
-  function incrementselectedDay() {
+  function incrementSelectedDay() {
     var next = addDays(selectedDay, 1);
     setDays(getWeekDays(next));
-    setselectedDay(next);
+    setSelectedDay(next);
   }
 
   function decrementselectedDay() {
     var prev = subDays(selectedDay, 1);
     setDays(getWeekDays(prev));
-    setselectedDay(prev);
+    setSelectedDay(prev);
   }
 
 
   //Always one week because no adjust active day
   function incrementWeek() {
-    var next = addDays(selectedDay, 7);
+    var next = addDays(dayInScope, 7);
     setDays(getWeekDays(next));
   }
 
   function decrementWeek() {
-    var prev = subDays(selectedDay, 7);
+    var prev = subDays(dayInScope, 7);
     setDays(getWeekDays(prev));
   }
 
@@ -48,9 +49,9 @@ function DaysProvider({ children }) {
   const daysContext = {
     days,
     selectedDay,
-    setselectedDay,
+    setSelectedDay,
     getWeekDays,
-    incrementselectedDay,
+    incrementSelectedDay,
     decrementselectedDay,
     incrementWeek,
     decrementWeek

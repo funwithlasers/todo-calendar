@@ -18,8 +18,10 @@ function Week() {
 
   return (
     <>
-      <button onClick={incrementActiveDay}>inc</button>
-      <button onClick={decrementActiveDay}>dec</button>
+      <div className='flex justify-around'>
+        <button className='rounded-lg border-solid border-2 border-gray-800' onClick={decrementActiveDay}>Previous Day</button>
+        <button className='rounded-lg border-solid border-2 border-gray-800' onClick={incrementActiveDay}>Next Day</button>
+      </div>
       <div className='grid grid-cols-7 justify-center'>
         {renderedDays}
       </div>

@@ -1,19 +1,21 @@
-import { useContext } from 'react';
-import Week from "../components/Week";
-import DayContext from '../context/days';
+import Week from '../components/Week';
+import useDaysContext from '../hooks/use-days-context';
 import ChoreCreate from '../components/ChoreCreate';
-
+import { formatDate } from '../helpers';
 
 function WeekPage() {
-  const { days, selectedDay } = useContext(DayContext);
-
+  const { selectedDay, days, incrementWeek, decrementWeek } = useDaysContext();
 
   return (
     <div className='week-page'>
-      <h1 className='flex text-3xl font-bold justify-center'>{days[0].toLocaleDateString("en-US")} - {days[6].toLocaleDateString("en-US")}</h1>
+      <h1 className='flex text-3xl font-bold justify-center'>{formatDate(days[0])} - {(formatDate(days[6]))}</h1>
+      <div className='flex justify-around'>
+        <button className='rounded-lg border-solid border-2 border-gray-800' onClick={decrementWeek}>Previous Week</button>
+        <button className='rounded-lg border-solid border-2 border-gray-800' onClick={incrementWeek}>Next Week</button>
+      </div>
       <Week />
       <div>
-        <ChoreCreate date={selectedDay.toLocaleDateString("en-US")} />
+        <ChoreCreate date={selectedDay} />
       </div>
     </div>
   );

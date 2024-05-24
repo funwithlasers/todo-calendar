@@ -6,17 +6,22 @@ const ChoresContext = createContext();
 function ChoresProvider({ children }) {
   const [chores, setChores] = useState([]);
 
-  const fetchChores = async () => {
-    const response = await axios.get('http://localhost:3001/chores');
+  const fetchChores = async (id) => {
+    const response = await axios.get(`https://localhost:7010/TodoItems/${id}`);
 
-    setChores(response.data);
+    const formattedData = response.data.map(item => ({
+      ...item,
+      dueBy: new Date(item.dueBy)
+    }));
+
+    setChores(formattedData);
   };
 
-  const editChoreById = async (id, title, status, date) => {
-    const response = await axios.put(`http://localhost:3001/chores/${id}`, {
+  const editChoreById = async (id, dueBy, title, status) => {
+    const response = await axios.put(`http://localhost:7010/TodoItems/${id}`, {
+      dueBy,
       title,
-      status,
-      date,
+      status
     });
 
     const updatedChores = chores.map(chore => {
@@ -31,7 +36,7 @@ function ChoresProvider({ children }) {
   };
 
   const deleteChoreById = async (id) => {
-    await axios.delete(`http://localhost:3001/chores/${id}`);
+    await axios.delete(`http://localhost:7010/TodoItems/${id}`);
 
     const updatedChores = chores.filter(chore => {
       return chore.id !== id;
@@ -40,11 +45,12 @@ function ChoresProvider({ children }) {
     setChores(updatedChores);
   };
 
-  const createChore = async (title, status, date) => {
-    const response = await axios.post('http://localhost:3001/chores', {
+  const createChore = async (dueBy, title, status) => {
+    const response = await axios.post('https://localhost:7010/TodoItems', {
+      dueBy,
       title,
       status,
-      date,
+      userId: 1   // TODO: Get id of logged in user
     });
 
     const updatedChores = [...chores, response.data];

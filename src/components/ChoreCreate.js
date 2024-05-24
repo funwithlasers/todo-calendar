@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import useChoresContext from '../hooks/use-chores-context';
 import useDaysContext from '../hooks/use-days-context';
 import CreateIcon from './icons/CreateIcon';
@@ -7,7 +7,7 @@ import Modal from './Modal';
 import DatePicker from 'react-datepicker';
 import { toDate } from 'date-fns';
 import "react-datepicker/dist/react-datepicker.css"
-
+import { formatDate } from '../helpers';
 
 
 function ChoreCreate({ date }) {
@@ -24,7 +24,7 @@ function ChoreCreate({ date }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createChore(title, 0, choreDate.toLocaleDateString("en-US"));
+    createChore(formatDate(choreDate), title, "Incomplete");
     setTitle('');
     setShowModal(false);
   };

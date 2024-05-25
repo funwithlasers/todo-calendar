@@ -7,7 +7,7 @@ import Modal from './Modal';
 import DatePicker from 'react-datepicker';
 import { toDate } from 'date-fns';
 import "react-datepicker/dist/react-datepicker.css"
-import { formatDate } from '../helpers';
+import { DateUtils } from '../helpers';
 
 
 function ChoreCreate({ date }) {
@@ -24,7 +24,7 @@ function ChoreCreate({ date }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createChore(formatDate(choreDate), title, "Incomplete");
+    createChore(DateUtils.formatDate(choreDate), title, "Incomplete");
     setTitle('');
     setShowModal(false);
   };

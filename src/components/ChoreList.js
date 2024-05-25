@@ -1,12 +1,12 @@
 import Chore from './Chore';
 import useChoresContext from '../hooks/use-chores-context';
-import { isSameDay } from 'date-fns';
+import { DateUtils } from '../helpers';
 
 function ChoreList({ date }) {
   const { chores } = useChoresContext();
 
   const dayChores = (date) => chores.filter(chore => {
-    return isSameDay(date, chore.dueDate);
+    return DateUtils.isSameDay(date, chore.dueDate);
   });
 
   const renderedChores = dayChores(date).map((chore) => {

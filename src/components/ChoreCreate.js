@@ -5,9 +5,7 @@ import CreateIcon from './icons/CreateIcon';
 import SaveIcon from './icons/SaveIcon';
 import Modal from './Modal';
 import DatePicker from 'react-datepicker';
-import { toDate } from 'date-fns';
 import "react-datepicker/dist/react-datepicker.css"
-import { DateUtils } from '../helpers';
 
 
 function ChoreCreate({ date }) {
@@ -15,7 +13,7 @@ function ChoreCreate({ date }) {
   const { createChore } = useChoresContext();
   const { selectedDay } = useDaysContext();
   const [showModal, setShowModal] = useState(false);
-  const [choreDate, setChoreDate] = useState(toDate(date));
+  const [choreDate, setChoreDate] = useState(date);
 
 
   const handleTitleChange = (event) => {
@@ -24,7 +22,7 @@ function ChoreCreate({ date }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createChore(DateUtils.formatDate(choreDate), title, "Incomplete");
+    createChore(choreDate, title, "Incomplete");
     setTitle('');
     setShowModal(false);
   };
@@ -59,12 +57,14 @@ function ChoreCreate({ date }) {
             //showIcon
             selected={choreDate}
             onChange={(date) => setChoreDate(date)}
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
           />
         </div>
         <form onSubmit={handleSubmit}>
           <label>Title</label>
           <input className='input' value={title} onChange={handleTitleChange} />
-
         </form>
       </div>
 

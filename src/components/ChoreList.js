@@ -6,7 +6,7 @@ function ChoreList({ date }) {
   const { chores } = useChoresContext();
 
   const dayChores = (date) => chores.filter(chore => {
-    return isSameDay(date, chore.dueBy);
+    return isSameDay(date, chore.dueDate);
   });
 
   const renderedChores = dayChores(date).map((chore) => {

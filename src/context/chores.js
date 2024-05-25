@@ -11,15 +11,15 @@ function ChoresProvider({ children }) {
 
     const formattedData = response.data.map(item => ({
       ...item,
-      dueBy: new Date(item.dueBy)
+      dueDate: new Date(item.dueDate)
     }));
 
     setChores(formattedData);
   };
 
-  const editChoreById = async (id, dueBy, title, status) => {
+  const editChoreById = async (id, dueDate, title, status) => {
     const response = await axios.put(`http://localhost:7010/TodoItems/${id}`, {
-      dueBy,
+      dueDate,
       title,
       status
     });
@@ -45,15 +45,16 @@ function ChoresProvider({ children }) {
     setChores(updatedChores);
   };
 
-  const createChore = async (dueBy, title, status) => {
+  const createChore = async (dueDate, title, status) => {
     const response = await axios.post('https://localhost:7010/TodoItems', {
-      dueBy,
+      dueDate,
       title,
       status,
       userId: 1   // TODO: Get id of logged in user
     });
 
-    const updatedChores = [...chores, response.data];
+    const updatedChores = fetchChores(1);
+    //const updatedChores = fetchChores(userId);
     setChores(updatedChores);
   };
 

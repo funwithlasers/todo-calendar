@@ -1,5 +1,5 @@
 import { fromZonedTime, toZonedTime } from 'date-fns-tz';
-import { isSameDay } from 'date-fns';
+import { format, isSameDay } from 'date-fns';
 
 // function formatDate(date)
 // {
@@ -33,7 +33,7 @@ function _isSameDay(date1, date2) {
   }
 }
 
-function _convertToUtcTime(utcTime, timeZone) {
+function _convertToUtc(utcTime, timeZone) {
   try {
     return fromZonedTime(utcTime, timeZone);
   } catch (error) {
@@ -42,9 +42,12 @@ function _convertToUtcTime(utcTime, timeZone) {
   }
 }
 
-function _convertToLocalTime(utcTime, timeZone) {
+function _convertToLocal(utcTime, timeZone) {
   try {
-    return toZonedTime(utcTime, timeZone);
+    const zonedDate = toZonedTime(utcTime, timeZone);
+    const formattedDate = format(zonedDate, 'yyyy-MM-dd HH:mm:ssXXX', { timeZone });
+
+    return formattedDate;
   } catch (error) {
     console.error('Error converting time:', error);
     throw error;
@@ -54,8 +57,8 @@ function _convertToLocalTime(utcTime, timeZone) {
 const DateUtils = {
   formatDate: _formatDate,
   isSameDay: _isSameDay,
-  convertToUtcTime: _convertToUtcTime,
-  convertToLocalTime: _convertToLocalTime
+  convertToUtc: _convertToUtc,
+  convertToLocal: _convertToLocal
 }
 
 export { DateUtils };

@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import axios from 'axios';
 import { DateUtils } from '../helpers';
 
@@ -6,13 +6,14 @@ const ChoresContext = createContext();
 
 function ChoresProvider({ children }) {
   const [chores, setChores] = useState([]);
+  const [timeZone, setTimeZone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone); //I need this now, but it should belong where tz is set in UI.
 
   const fetchChores = async (id) => {
     const response = await axios.get(`https://localhost:7010/TodoItems/${id}`);
 
     const formattedData = response.data.map(item => ({
       ...item,
-      dueDate: DateUtils.convertToLocalTime(item.dueDate, Intl.DateTimeFormat().resolvedOptions().timeZone)
+      dueDate: DateUtils.convertToLocal(item.dueDate, timeZone)
     }));
 
     setChores(formattedData);
@@ -20,7 +21,7 @@ function ChoresProvider({ children }) {
 
   const editChoreById = async (id, dueDate, title, status) => {
     await axios.put(`http://localhost:7010/TodoItems/${id}`, {
-      dueDate: DateUtils.convertToUtcTime(dueDate),
+      dueDate: DateUtils.convertToUtc(dueDate, timeZone),
       title,
       status
     });
@@ -37,7 +38,7 @@ function ChoresProvider({ children }) {
   const createChore = async (dueDate, title, status) => {
     try {
       await axios.post('https://localhost:7010/TodoItems', {
-        dueDate: DateUtils.convertToUtcTime(dueDate),
+        dueDate: DateUtils.convertToUtc(dueDate, timeZone),
         title,
         status,
         userId: 1   // TODO: Get id of logged in user

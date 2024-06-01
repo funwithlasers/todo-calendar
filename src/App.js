@@ -1,8 +1,6 @@
 import { useEffect, useContext } from 'react';
 import ChoresContext from './context/chores';
 import WeekPage from './pages/WeekPage';
-import ModalPage from './pages/ModalPage';
-import LoginPage from './pages/LoginPage';
 import { Route } from 'wouter';
 
 function App() {
@@ -13,15 +11,9 @@ function App() {
   }, []);
 
   return (
-    <>
-      <Route path='/Login'>
-        <LoginPage />
-      </Route>      
+    <>  
       <Route path='/'>
         <WeekPage />
-      </Route>
-      <Route path='/modal'>
-        <ModalPage />
       </Route>
     </>
   );

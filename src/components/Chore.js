@@ -5,6 +5,7 @@ import IncompleteIcon from './icons/IncompleteIcon'
 import CompleteIcon from './icons/CompeteIcon';
 import EditIcon from './icons/EditIcon';
 import DeleteIcon from './icons/DeleteIcon';
+import logo192 from './logo192.png';
 
 
 function Chore({ chore }) {
@@ -39,17 +40,30 @@ function Chore({ chore }) {
   };
 
   return (
-    <div className='chore-show flex flex-row w-full'>
-      <button className='chore-status pr-1' onClick={handleUpdateStatus}>
-        {statusIcon()}
-      </button>
-      <div className='h-7 flex-1 min-w-fit pr-2'>{content}</div>
-      <button className='chore-edit' onClick={handleCompleteEditClick}>
-        <EditIcon />
-      </button>
-      <button className='chore-delete' onClick={handleDeleteClick}>
-        <DeleteIcon />
-      </button>
+    <div className='chore-show w-full border-solid border-grey-200 border-2'>
+      <div className='flex flex-row'>
+        <div>
+          <img src={logo192} alt='' width="50" height="50"></img>
+        </div>
+        <div>
+          <div className='chore-title'>
+            {content}
+          </div>
+          <div>
+            <button className='chore-status flex flex-row' onClick={handleUpdateStatus}>
+              {statusIcon()} {chore.status}
+            </button>
+          </div>
+        </div>
+        <div className='chore-menu ml-auto'>
+          <button className='chore-edit' onClick={handleCompleteEditClick}>
+            <EditIcon />
+          </button>
+          <button className='chore-delete' onClick={handleDeleteClick}>
+            <DeleteIcon />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

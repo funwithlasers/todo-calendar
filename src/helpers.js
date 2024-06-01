@@ -44,10 +44,8 @@ function _convertToUtc(utcTime, timeZone) {
 
 function _convertToLocal(utcTime, timeZone) {
   try {
-    const zonedDate = toZonedTime(utcTime, timeZone);
-    const formattedDate = format(zonedDate, 'yyyy-MM-dd HH:mm:ssXXX', { timeZone });
-
-    return formattedDate;
+    var localTime = toZonedTime(utcTime + 'Z', timeZone);
+    return format(localTime, 'yyyy-MM-dd HH:mm:ss');
   } catch (error) {
     console.error('Error converting time:', error);
     throw error;

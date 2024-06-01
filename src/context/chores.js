@@ -9,7 +9,7 @@ function ChoresProvider({ children }) {
   const [timeZone, setTimeZone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone); //I need this now, but it should belong where tz is set in UI.
 
   const fetchChores = async (id) => {
-    const response = await axios.get(`https://localhost:7010/TodoItems/${id}`);
+    const response = await axios.get(`https://192.168.1.146:7010/TodoItems/${id}`);
 
     const formattedData = response.data.map(item => ({
       ...item,

@@ -1,54 +1,59 @@
 import { createContext, useState } from 'react';
 import axios from 'axios';
+import { DateUtils } from '../helpers';
 
 const ChoresContext = createContext();
 
 function ChoresProvider({ children }) {
   const [chores, setChores] = useState([]);
+  const [timeZone, setTimeZone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone); //I need this now, but it should belong where tz is set in UI.
 
-  const fetchChores = async () => {
-    const response = await axios.get('http://localhost:3001/chores');
+  const fetchChores = async (id) => {
+    const response = await axios.get(`https://localhost:7010/TodoItems/${id}`);
 
-    setChores(response.data);
+    const formattedData = response.data.map(item => ({
+      ...item,
+      dueDate: DateUtils.convertToLocal(item.dueDate, timeZone)
+    }));
+
+    setChores(formattedData);
   };
 
-  const editChoreById = async (id, title, status, date) => {
-    const response = await axios.put(`http://localhost:3001/chores/${id}`, {
+  const editChoreById = async (id, dueDate, title, status) => {
+    await axios.put(`http://localhost:7010/TodoItems/${id}`, {
+      dueDate: DateUtils.convertToUtc(dueDate, timeZone),
       title,
-      status,
-      date,
+      status
     });
 
-    const updatedChores = chores.map(chore => {
-      if (chore.id === id) {
-        return { ...chore, ...response.data };
-      }
-
-      return chore;
-    });
-
-    setChores(updatedChores);
+    fetchChores(1);
   };
 
   const deleteChoreById = async (id) => {
-    await axios.delete(`http://localhost:3001/chores/${id}`);
-
-    const updatedChores = chores.filter(chore => {
-      return chore.id !== id;
-    });
-
-    setChores(updatedChores);
+    await axios.delete(`http://localhost:7010/TodoItems/${id}`);
+        
+    fetchChores(1);
   };
 
-  const createChore = async (title, status, date) => {
-    const response = await axios.post('http://localhost:3001/chores', {
-      title,
-      status,
-      date,
-    });
-
-    const updatedChores = [...chores, response.data];
-    setChores(updatedChores);
+  const createChore = async (dueDate, title, status) => {
+    try {
+      await axios.post('https://localhost:7010/TodoItems', {
+        dueDate: DateUtils.convertToUtc(dueDate, timeZone),
+        title,
+        status,
+        userId: 1   // TODO: Get id of logged in user
+      });
+    } catch (error) {
+      if (error.response) {
+        console.log('Error Response:', error.response);
+      } else if (error.request) {
+        console.log('Error Request:', error.request);
+      } else {
+        console.log('Error Message:', error.message);
+      }
+    }
+        
+    fetchChores(1);
   };
 
   const choresContext = {

@@ -1,16 +1,19 @@
-import ChoreCreate from './ChoreCreate';
 import ChoreList from './ChoreList';
+import useDaysContext from '../hooks/use-days-context';
+import { formatDate } from 'date-fns';
 
 function Day({ date }) {
+  const { selectedDay, setSelectedDay } = useDaysContext();
 
   return (
     <div className='h-screen'>
-      <div className='relative border-solid border-2 border-black pb-5 h-4/5'>
-        <h1 className='text-3xl font-bold text-white border-b-2 border-black bg-black'>{date}</h1>
+      <div
+        onClick={() => { setSelectedDay(date) }}
+        className={'relative border-solid pb-5 h-4/5 ' + (selectedDay === date ? 'border-cyan-600 border-4' : 'border-black border-2')
+        }>
+        <h1 className='text-3xl font-bold text-white border-b-2 border-black bg-black'>{formatDate(date, 'EEEE')}</h1>
+        <h1 className='text-3xl font-bold text-white border-b-2 border-black bg-black'>{formatDate(date, 'MMMM')} {formatDate(date, 'do')}</h1>
         <ChoreList date={date} />
-        <div>
-          <ChoreCreate date={date} />
-        </div>
       </div>
     </div>
   );

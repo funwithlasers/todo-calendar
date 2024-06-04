@@ -5,11 +5,12 @@ import { DateUtils } from '../helpers';
 const ChoresContext = createContext();
 
 function ChoresProvider({ children }) {
+  const serverUrl = process.env.REACT_APP_SECRET_NAME;
   const [chores, setChores] = useState([]);
   const [timeZone, setTimeZone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone); //I need this now, but it should belong where tz is set in UI.
 
   const fetchChores = async (id) => {
-    const response = await axios.get(`https://192.168.1.146:7010/TodoItems/${id}`);
+    const response = await axios.get(`${serverUrl}/TodoItems/${id}`);
 
     const formattedData = response.data.map(item => ({
       ...item,
@@ -20,7 +21,7 @@ function ChoresProvider({ children }) {
   };
 
   const editChoreById = async (id, dueDate, title, status) => {
-    await axios.put(`http://localhost:7010/TodoItems/${id}`, {
+    await axios.put(`${serverUrl}/TodoItems/${id}`, {
       dueDate: DateUtils.convertToUtc(dueDate, timeZone),
       title,
       status
@@ -30,14 +31,14 @@ function ChoresProvider({ children }) {
   };
 
   const deleteChoreById = async (id) => {
-    await axios.delete(`http://localhost:7010/TodoItems/${id}`);
+    await axios.delete(`${serverUrl}/TodoItems/${id}`);
         
     fetchChores(1);
   };
 
   const createChore = async (dueDate, title, status) => {
     try {
-      await axios.post('https://localhost:7010/TodoItems', {
+      await axios.post(`${serverUrl}/TodoItems`, {
         dueDate: DateUtils.convertToUtc(dueDate, timeZone),
         title,
         status,

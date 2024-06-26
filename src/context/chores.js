@@ -5,7 +5,7 @@ import { DateUtils } from '../helpers';
 const ChoresContext = createContext();
 
 function ChoresProvider({ children }) {
-  const serverUrl = process.env.REACT_APP_SECRET_NAME;
+  const serverUrl = process.env.REACT_APP_SERVER_URL;
   const [chores, setChores] = useState([]);
   const [timeZone, setTimeZone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone); //I need this now, but it should belong where tz is set in UI.
 

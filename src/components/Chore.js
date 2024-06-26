@@ -6,6 +6,7 @@ import CompleteIcon from './icons/CompeteIcon';
 import EditIcon from './icons/EditIcon';
 import DeleteIcon from './icons/DeleteIcon';
 import logo192 from './logo192.png';
+import ChoreCreate from './ChoreCreate';
 
 
 function Chore({ chore }) {
@@ -13,7 +14,7 @@ function Chore({ chore }) {
   const { deleteChoreById, editChoreById } = useChoresContext();
 
   const handleDeleteClick = () => {
-    deleteChoreById(chore.id);
+    deleteChoreById(chore.todoItemId);
   };
 
   // move to context fo save data
@@ -27,7 +28,8 @@ function Chore({ chore }) {
 
   let content = <h3>{chore.title}</h3>;
   if (showEdit) {
-    content = <ChoreEdit onSubmit={handleSubmit} chore={chore} />;
+    content = <ChoreCreate date={chore.date} chore={chore} onSubmit={handleSubmit} /> 
+    //<ChoreEdit onSubmit={handleSubmit} chore={chore} />;
   }
 
   const handleUpdateStatus = () => {

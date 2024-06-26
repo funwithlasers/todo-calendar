@@ -5,12 +5,12 @@ import CreateIcon from './icons/CreateIcon';
 import SaveIcon from './icons/SaveIcon';
 import Modal from './Modal';
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css"
+import 'react-datepicker/dist/react-datepicker.css';
 
 
-function ChoreCreate({ date }) {
+function ChoreCreate({ date, chore }) {
   const [title, setTitle] = useState('');
-  const { createChore } = useChoresContext();
+  const { createChore, editChoreById } = useChoresContext();
   const { selectedDay } = useDaysContext();
   const [showModal, setShowModal] = useState(false);
   const [choreDate, setChoreDate] = useState(date);
@@ -22,7 +22,12 @@ function ChoreCreate({ date }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createChore(choreDate, title, "Incomplete");
+    if (chore != null) {
+      editChoreById(chore.id, chore.dueDate, chore.title, chore.status);
+    } 
+    else {
+      createChore(choreDate, title, "Incomplete");
+    }
     setTitle('');
     setShowModal(false);
   };
